@@ -1,9 +1,8 @@
-Tranzr — Fault-Tolerant File Transfer Backend
+Tranzr 
 
-Tranzr is a fault-tolerant backend system designed for reliable large file transfers.
-It supports chunked uploads, resumable transfers, integrity verification, and secure shareable download links.
+Tranzr is a  backend system designed for reliable large file transfers.
+It supports chunked uploads, resumable transfers,  and secure shareable download links.
 
-Built to simulate how real-world systems like Google Drive, Dropbox, and WeTransfer handle large file delivery at scale.
 
 🧠 Problem It Solves
 
@@ -29,7 +28,7 @@ If the network fails, only missing chunks are retried — not the whole file.
 
 Clients can query the server to know which chunks are already uploaded and resume from there.
 
-🔐 3. Integrity Verification
+🔐 3. Hash Based Verification
 
 After merging, the system generates a SHA-256 hash to ensure the file is not corrupted.
 
@@ -41,7 +40,6 @@ Password-protected download links
 
 Expiring links
 
-Limited download count links
 
 🧹 5. Automatic Cleanup
 
@@ -119,9 +117,7 @@ password (hashed)
 
 expires_at
 
-download_count
 
-max_downloads
 
 🔌 API Endpoints
 📤 Upload Flow
@@ -180,7 +176,7 @@ GET /download/{file_id}
 
 Create secure link:
 
-POST /share/create/{file_id}?expire_minutes=60&max_downloads=5
+POST /share/create/{file_id}?expire_minutes=60&
 
 
 Response:
@@ -219,8 +215,6 @@ http://127.0.0.1:8000/docs
 This is not a basic CRUD app.
 It demonstrates real backend engineering concepts:
 
-Fault tolerance
-
 Resumable uploads
 
 Data integrity
@@ -231,19 +225,6 @@ Resource cleanup
 
 Production-style API design
 
-This is the kind of backend logic used in cloud storage systems.
-
-📌 Future Improvements
-
-Cloud storage support (AWS S3 / GCS)
-
-Parallel chunk uploads
-
-WebSocket progress updates
-
-Virus scanning before merge
-
-Rate limiting & auth
 
 👨‍💻 Author
 
